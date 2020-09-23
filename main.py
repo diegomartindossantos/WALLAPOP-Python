@@ -32,10 +32,17 @@ def registrar():
     except:
         print ("Error conectandose a la base de datos de usuarios.")
     print ("CURSOR OK")
+
+
     usuario = str(input("User> "))
     password = getpass.getpass("Password> ")
     password_encriptada = encriptar(password)
-    print (usuario,password_encriptada)
+
+
+    comando = f'INSERT INTO users(usuario,password) values("{usuario}","{password_encriptada}")'
+    cursor_database.execute(comando)
+    conexion_database.commit()
+    print ("Usuario creado correctamente.")
         
 
         
